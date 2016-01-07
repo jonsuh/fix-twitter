@@ -8,7 +8,7 @@
   * Copyright (c) 2016 Jonathan Suh <hello@jonsuh.com>
   */
 
-;var tcoRemove = (function() {
+var tcoRemove = (function() {
   "use strict";
 
   /**
