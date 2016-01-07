@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"manifest_version": 2,
 	"author": "Jonathan Suh <hello@jonsuh.com>",
-	"description": "Chrome extension to change to remove t.co and replace them with their original URLs (if available).",
+	"description": "Chrome extension to change to remove t.co on twitter.com and replace them with their original URLs.",
 	"content_scripts": [
 		{
 			"matches": ["https://twitter.com/*"],
