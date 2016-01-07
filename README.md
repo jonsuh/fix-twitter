@@ -4,6 +4,8 @@ t.co Remove is a Chrome browser extension to that removes t.co links on twitter.
 
 Why remove t.co links? Because t.co links are slow, crappy, redundant and unnecessary.
 
+![](http://i.imgur.com/fz6N8Mk.jpg)
+
 ## Install
 
 1. Either (A) download and unzip the files or (B) clone this repository where you want to store this extension:
