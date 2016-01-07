@@ -1,6 +1,6 @@
 # Introduction
 
-t.co Remove is a Chrome browser extension to that removes t.co links on twitter.com and replaces them with their original URLs (if the original URL is available).
+t.co Remove is a Chrome browser extension to that removes t.co links on [Twitter](https://twitter.com) and [Tweetdeck](https://tweetdeck.twitter.com), and replaces them with their original URLs (if the original URL is available).
 
 Why remove t.co links? Because t.co links are slow, crappy, redundant and unnecessary.
 
@@ -21,9 +21,9 @@ $ git clone git@github.com:jonsuh/tco-remove.git
 ## Details
 
 - Should replace most but not *all* t.co links—it only replaces ones where the data of the original URL is available in the markup (e.g. `<a href="https://t.co/blahblah" data-extended-url="http://original-url.com">`)
-- Runs in the background and only executes in tabs open to twitter.com.
+- Runs in the background and only executes in tabs open to [twitter.com](https://twitter.com) or [tweetdeck.twitter.com](https://tweetdeck.twitter.com).
 - Runs every 3 seconds and only replaces new t.co links that haven’t already been changed (i.e. when you first load twitter.com, navigate to a new page, open a modal, load more tweets, etc.)
-- Permission is listed as being able to “*Read and change your data on twitter.com*“ but none of your data is being read, stored, sent or otherwise by me or anyone else. If you’re curious or skeptical, see the `background.js` to see what’s happening under the hood.
+- Permission is listed as being able to “*Read and change your data on tweetdeck.twitter.com and twitter.com*“ but none of your data is being read, stored, sent or otherwise by me or anyone else. If you’re curious or skeptical, see the `background.js` to see what’s happening under the hood.
 
 ## Todos
 

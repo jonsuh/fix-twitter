@@ -1,7 +1,7 @@
 /**
   * t.co Remove
   *
-  * Chrome extension to remove t.co links on twitter.com and replace them with their original URLs.
+  * Chrome extension to remove t.co links on Twitter and Tweetdeck and replace them with their original URLs.
   * Why remove t.co links? Because t.co links are slow, crappy, redundant and unnecessary.
   *
   * https://github.com/jonsuh/tco-remove/
@@ -60,8 +60,8 @@ var tcoRemove = (function() {
    * @private
    */
   var change = function() {
-    // Search the page for unmodified Twitter timeline links
-    var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed])");
+    // Search the page for unmodified Twitter timeline and Tweetdeck links
+    var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
 
     // Make sure that there are one or more links found
     if (tcoLinks.length > 0) {
@@ -72,7 +72,13 @@ var tcoRemove = (function() {
         // If the link has attribute `data-expanded-url`, 
         // replace the t.co link with the value of `data-expanded-url`
         if (link.hasAttribute("data-expanded-url")) {
-          link.href = link.getAttribute("data-expanded-url")
+          link.href = link.getAttribute("data-expanded-url");
+          linkChanged = true;
+        }
+        // If link has attribute `data-full-url` (Tweetdeck support),
+        // replace the t.co link with the value of `data-full-url`
+        else if (link.hasAttribute("data-full-url")) {
+          link.href = link.getAttribute("data-full-url");
           linkChanged = true;
         }
         else {
@@ -96,7 +102,7 @@ var tcoRemove = (function() {
   };
 
   /**
-   * Marks link as being changed by adding data attribute `data-tco-removed`
+   * Marks link as being changed by adding attribute `data-tco-removed`
    * 
    * @private
    * @el {Element} The link element
