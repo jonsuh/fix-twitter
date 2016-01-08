@@ -27,7 +27,7 @@ $ git clone git@github.com:jonsuh/tco-remove.git
 
 ## Todos
 
-- Options page to customize the polling interval
+- ~~Options page to customize the polling interval~~
 - Toolbar button to toggle extension on and off
 - Submit to the Chrome Web Store
 
