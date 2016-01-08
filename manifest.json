@@ -1,6 +1,6 @@
 {
 	"name": "t.co Remove",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"manifest_version": 2,
 	"author": "Jonathan Suh <hello@jonsuh.com>",
 	"description": "Remove t.co links on Twitter and Tweetdeck, and replace them with their original URLs.",
