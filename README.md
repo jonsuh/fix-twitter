@@ -8,7 +8,7 @@ Why remove t.co links? Because t.co links are slow, crappy, redundant and unnece
 
 ## Install
 
-t.co Remove is available on the Chrome Web Store: [chrome.google.com/webstore/detail/gnmfhemkaclbeooiklobpejpoihpfnfd](https://chrome.google.com/webstore/detail/gnmfhemkaclbeooiklobpejpoihpfnfd/).
+t.co Remove is available on the Chrome Web Store: [chrome.google.com/webstore/detail/tco-remove/gnmfhemkaclbeooiklobpejpoihpfnfd](https://chrome.google.com/webstore/detail/tco-remove/gnmfhemkaclbeooiklobpejpoihpfnfd).
 
 However, if you’d like to manually install this extension:
 
