@@ -15,8 +15,8 @@ However, if you’d like to manually install this extension:
 1. Either (A) download and unzip the files or (B) clone this repository where you want to store this extension:
 
 ```
-$ cd ~/Downloads/
-$ git clone git@github.com:jonsuh/tco-remove.git
+cd ~/Downloads/
+git clone git@github.com:jonsuh/tco-remove.git
 ```
 
 2. Chrome Preferences > Extensions (Make sure *Developer mode* is checked at the top right)
@@ -31,7 +31,7 @@ $ git clone git@github.com:jonsuh/tco-remove.git
 
 ## Pssst!
 
-Psssst! If you use Tweetbot 2 for Mac, you can also replace t.co links by running the following in Terminal:
+If you use Tweetbot 2 for Mac, you can also replace t.co links by running the following in Terminal:
 
 ```
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
