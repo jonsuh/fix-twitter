@@ -29,11 +29,21 @@ $ git clone git@github.com:jonsuh/tco-remove.git
 - Runs every 3 seconds (polling interval customizable in extension options) and only replaces new t.co links that haven’t already been changed (i.e. when you first load [twitter.com](https://twitter.com), navigate to a new page, open a modal, load more tweets, etc.)
 - Permission is listed as being able to “*Read and change your data on tweetdeck.twitter.com and twitter.com*” but none of your data is being read, stored, sent or otherwise by me or anyone else. If you’re curious or skeptical, see the `background.js` to see what’s happening under the hood.
 
+## Pssst!
+
+Psssst! If you use Tweetbot 2 for Mac, you can also replace t.co links by running the following in Terminal:
+
+```
+defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+```
+
 ## Todos
 
 - ~~Options page to customize the polling interval~~
 - Toolbar button to toggle extension on and off
 - ~~Submit to the Chrome Web Store~~
+
+You’re welcome!
 
 ## License
 
