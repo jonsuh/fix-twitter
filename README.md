@@ -8,6 +8,10 @@ Why remove t.co links? Because t.co links are slow, crappy, redundant and unnece
 
 ## Install
 
+t.co Remove is available on the Chrome Web Store: [chrome.google.com/webstore/detail/gnmfhemkaclbeooiklobpejpoihpfnfd](https://chrome.google.com/webstore/detail/gnmfhemkaclbeooiklobpejpoihpfnfd/).
+
+However, if you’d like to manually install this extension:
+
 1. Either (A) download and unzip the files or (B) clone this repository where you want to store this extension:
 
 ```
@@ -29,7 +33,7 @@ $ git clone git@github.com:jonsuh/tco-remove.git
 
 - ~~Options page to customize the polling interval~~
 - Toolbar button to toggle extension on and off
-- Submit to the Chrome Web Store
+- ~~Submit to the Chrome Web Store~~
 
 ## License
 
