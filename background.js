@@ -37,7 +37,12 @@ var tcoRemove = (function() {
   };
 
   // Polling interval in milliseconds
-  var pollInterval = 3000;
+  // var pollInterval = 3000;
+  var pollInterval = chrome.storage.sync.get({
+    interval: 3000
+  }, function(data) {
+    return parseInt(data.interval, 10);
+  });
 
   /**
    * Initializes the app
