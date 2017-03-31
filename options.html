@@ -4,7 +4,9 @@
   <meta charset="utf-8">
   <title>Fix Twitter Options</title>
   <style>
+    body { font-size: 0.85rem; }
     .form-field + .form-field { margin-top: 0.5em; }
+    .form-input { width: 4rem; }
   </style>
 </head>
 <body>
@@ -16,7 +18,7 @@
       <input id="replies" type="checkbox"> <label for="replies">Restore list of people in replies</label>
     </div>
     <div class="form-field">
-      <label for="interval">Polling interval (in milliseconds):</label> <input id="interval" type="number" min="1" placeholder="3000" required>
+      <label for="interval">Polling interval (in milliseconds):</label> <input id="interval" type="number" min="1" placeholder="3000" class="form-input" required>
     </div>
     <br>
     <button type="submit" id="submit">Save</button>
