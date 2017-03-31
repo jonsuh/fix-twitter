@@ -61,11 +61,11 @@ var FT = (function() {
    */
   var start = function(interval) {
     // First run
-    change();
+    tcoRemove();
 
     // Continously poll
     setInterval(function() {
-      change();
+      tcoRemove();
     }, interval);
   };
 
@@ -74,7 +74,7 @@ var FT = (function() {
    *
    * @private
    */
-  var change = function() {
+  var tcoRemove = function() {
     // Search the page for unmodified Twitter timeline and Tweetdeck links
     var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
 
@@ -110,7 +110,7 @@ var FT = (function() {
 
         // Mark the link as being changed (so it doesn’t get picked up when the script runs again)
         if (linkChanged === true) {
-          markChanged(link);
+          tcoMarkChanged(link);
         }
       });
     }
@@ -122,7 +122,7 @@ var FT = (function() {
    * @private
    * @el {Element} The link element
    */
-  var markChanged = function(el) {
+  var tcoMarkChanged = function(el) {
     el.setAttribute("data-tco-removed", "");
   };
 
