@@ -4,6 +4,7 @@
 	"manifest_version": 2,
 	"author": "Jonathan Suh <hello@jonsuh.com>",
 	"description": "Fix dumb things about Twitter and TweetDeck on the web (e.g. t.co links, list of people in replies)",
+	"homepage_url": "https://github.com/jonsuh/fix-twitter/",
 	"icons": {
 		"16": "icon16.png",
 		"48": "icon48.png",
