@@ -76,13 +76,13 @@ var FT = (function() {
    */
   var tcoRemove = function() {
     // Search the page for unmodified Twitter timeline and Tweetdeck links
-    var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
+    var links = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
 
     // Make sure that there are one or more links found
-    if (tcoLinks.length > 0) {
+    if (links.length > 0) {
       var linkChanged;
 
-      forEach(tcoLinks, function(link) {
+      forEach(links, function(link) {
         linkChanged = false;
         // If the link has attribute `data-expanded-url`,
         // replace the t.co link with the value of `data-expanded-url`
