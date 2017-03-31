@@ -60,13 +60,41 @@ var FT = (function() {
    * @private
    */
   var start = function(interval) {
+    function justDoIt() {
+      tcoRemove();
+      repliesShow();
+    }
+
     // First run
-    tcoRemove();
+    justDoIt();
 
     // Continously poll
     setInterval(function() {
-      tcoRemove();
+      justDoIt();
     }, interval);
+  };
+  /**
+    * Searches for tweets with “hidden” list of people replying to and appends them to the tweet
+   */
+
+  var repliesShow = function() {
+    var replies = document.querySelectorAll(".ReplyingToContextBelowAuthor");
+
+    if (replies.length > 0) {
+      forEach(replies, function(reply) {
+        // Get list of people replying to, remove (“Replying to”) and trim whitespace
+        var peopleHtml = reply.innerHTML.replace(/Replying to /g, "").trim() + " ";
+
+        // Find .tweet-text
+        var tweet = reply.parentNode.querySelector(".tweet-text");
+
+        // Append peopleHtml to tweet
+        tweet.insertAdjacentHTML("afterbegin", peopleHtml);
+
+        // Remove reply node from DOM
+        reply.remove();
+      });
+    }
   };
 
   /**
