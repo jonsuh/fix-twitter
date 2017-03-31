@@ -13,7 +13,7 @@ var tcoRemove = (function() {
 
   /**
    * forEach implementation for Objects/NodeLists/Arrays, automatic type loops and context options
-   * 
+   *
    * @private
    * @author Todd Motto
    * @link https://github.com/toddmotto/foreach
@@ -36,27 +36,37 @@ var tcoRemove = (function() {
     }
   };
 
-  // Polling interval in milliseconds
-  // var pollInterval = 3000;
-  var pollInterval = chrome.storage.sync.get({
-    interval: 3000
-  }, function(data) {
-    return parseInt(data.interval, 10);
-  });
-
   /**
    * Initializes the app
+   * Gets the polling interval in milliseconds (default: 3000)
+   * Then run start()
    *
    * @public
    */
   var init = function() {
+    // Get polling interval. Set default of 3000 if not set
+    chrome.storage.sync.get({
+      interval: 3000
+    }, function(data) {
+      start(data.interval);
+    });
+  };
+
+  /**
+   * Starts and polls based on interval
+   *
+   @param {Interval} interval - polling interval in milliseconds
+   *
+   * @private
+   */
+  var start = function(interval) {
     // First run
     change();
 
     // Continously poll
     setInterval(function() {
       change();
-    }, pollInterval);
+    }, interval);
   };
 
   /**
@@ -65,6 +75,7 @@ var tcoRemove = (function() {
    * @private
    */
   var change = function() {
+    console.log("CHANGE");
     // Search the page for unmodified Twitter timeline and Tweetdeck links
     var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
 
@@ -74,7 +85,7 @@ var tcoRemove = (function() {
 
       forEach(tcoLinks, function(link) {
         linkChanged = false;
-        // If the link has attribute `data-expanded-url`, 
+        // If the link has attribute `data-expanded-url`,
         // replace the t.co link with the value of `data-expanded-url`
         if (link.hasAttribute("data-expanded-url")) {
           link.href = link.getAttribute("data-expanded-url");
@@ -90,7 +101,7 @@ var tcoRemove = (function() {
           // Get the inner HTML of the link
           var linkHTML = link.innerHTML;
 
-          // If the inner HTML starts with "pic.twitter.com/", 
+          // If the inner HTML starts with "pic.twitter.com/",
           // replace the t.co link with the pic.twitter.com link
           if (linkHTML.substring(0, 16) === "pic.twitter.com/") {
             link.href = window.location.protocol + "//" + linkHTML;
@@ -108,7 +119,7 @@ var tcoRemove = (function() {
 
   /**
    * Marks link as being changed by adding attribute `data-tco-removed`
-   * 
+   *
    * @private
    * @el {Element} The link element
    */
