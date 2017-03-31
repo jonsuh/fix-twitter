@@ -1,11 +1,12 @@
 /**
-  * t.co Remove
+  * Fix Twitter
   *
-  * Chrome extension to remove t.co links on Twitter and Tweetdeck and replace them with their original URLs.
-  * Why remove t.co links? Because t.co links are slow, crappy, redundant and unnecessary.
+  * Chrome extension to fix dumb things about the Twitter and TweetDeck on the web.
+  * - Restore list of people for replies
+  * - Change http://t.co links to original URLs where possible
   *
-  * https://github.com/jonsuh/tco-remove/
-  * Copyright (c) 2016 Jonathan Suh <hello@jonsuh.com>
+  * https://github.com/jonsuh/fix-twitter/
+  * Copyright (c) 2017 Jonathan Suh <hello@jonsuh.com>
   */
 
 var FT = (function() {
