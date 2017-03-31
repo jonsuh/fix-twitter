@@ -78,18 +78,35 @@ var FT = (function() {
    */
 
   var repliesShow = function() {
-    var replies = document.querySelectorAll(".ReplyingToContextBelowAuthor");
+    var replies = document.querySelectorAll(".ReplyingToContextBelowAuthor, .other-replies");
 
     if (replies.length > 0) {
       forEach(replies, function(reply) {
         // Get list of people replying to, remove (“Replying to”) and trim whitespace
-        var peopleHtml = reply.innerHTML.replace(/Replying to /g, "").trim() + " ";
+        var peopleHtml = reply.innerHTML.trim().replace(/\s+/g, " ").replace(/Replying to/g, "") + " ";
 
-        // Find .tweet-text
-        var tweet = reply.parentNode.querySelector(".tweet-text");
+        // Find .tweet-text (if Twitter.com) or .tweet-text
+        var tweetClass = ".tweet-text";
+        var replyParentNode;
+
+        // If Twitter
+        if (reply.classList.contains("ReplyingToContextBelowAuthor")) {
+          replyParentNode = reply.parentNode;
+        }
+        // If TweetDeck
+        else if (reply.classList.contains("other-replies")) {
+          replyParentNode = reply.parentNode.parentNode;
+
+          // For quoted tweets
+          if (replyParentNode.classList.contains("js-reply-info-container")) {
+            replyParentNode = replyParentNode.parentNode;
+
+            tweetClass = ".js-quoted-tweet-text";
+          }
+        }
 
         // Append peopleHtml to tweet
-        tweet.insertAdjacentHTML("afterbegin", peopleHtml);
+        replyParentNode.querySelector(tweetClass).insertAdjacentHTML("afterbegin", peopleHtml);
 
         // Remove reply node from DOM
         reply.remove();
