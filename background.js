@@ -79,7 +79,7 @@ var FT = (function() {
 
       // Continously poll
       setInterval(function() {
-        // justDoIt();
+        justDoIt();
       }, data.interval);
     }
   };
