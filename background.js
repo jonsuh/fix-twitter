@@ -8,7 +8,7 @@
   * Copyright (c) 2016 Jonathan Suh <hello@jonsuh.com>
   */
 
-var tcoRemove = (function() {
+var FT = (function() {
   "use strict";
 
   /**
@@ -75,7 +75,6 @@ var tcoRemove = (function() {
    * @private
    */
   var change = function() {
-    console.log("CHANGE");
     // Search the page for unmodified Twitter timeline and Tweetdeck links
     var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
 
@@ -135,4 +134,4 @@ var tcoRemove = (function() {
   };
 })();
 
-tcoRemove.init();
+FT.init();
