@@ -46,9 +46,11 @@ var FT = (function() {
   var init = function() {
     // Get polling interval. Set default of 3000 if not set
     chrome.storage.sync.get({
-      interval: 3000
+      interval: 3000,
+      tco     : true,
+      replies : true
     }, function(data) {
-      start(data.interval);
+      start(data);
     });
   };
 
@@ -59,19 +61,26 @@ var FT = (function() {
    *
    * @private
    */
-  var start = function(interval) {
-    function justDoIt() {
-      tcoRemove();
-      repliesShow();
-    }
+  var start = function(data) {
+    if (data.tco === true || data.replies === true) {
+      function justDoIt() {
+        if (data.tco === true) {
+          tcoRemove();
+        }
 
-    // First run
-    justDoIt();
+        if (data.replies === true) {
+          repliesShow();
+        }
+      }
 
-    // Continously poll
-    setInterval(function() {
+      // First run
       justDoIt();
-    }, interval);
+
+      // Continously poll
+      setInterval(function() {
+        // justDoIt();
+      }, data.interval);
+    }
   };
   /**
     * Searches for tweets with “hidden” list of people replying to and appends them to the tweet

@@ -1,20 +1,32 @@
 var _defaultInterval = 3000;
+var _defaultTco = true;
+var _defaultReplies = true;
 
 function saveOptions() {
   var interval = document.getElementById("interval");
-  var value = parseInt(interval.value, 10);
+  var intervalValue = parseInt(interval.value, 10);
   var valid = true;
 
-  if (isNaN(value) || value <= 0) {
-    value = _defaultInterval;
+  if (isNaN(intervalValue) || intervalValue <= 0) {
+    intervalValue = _defaultInterval;
     valid = false;
   }
 
+  var tco = document.getElementById("tco");
+  var tcoChecked = tco.checked;
+
+  var replies = document.getElementById("replies");
+  var repliesChecked = replies.checked;
+
   var options = {};
-  options.interval = value;
+  options.interval = intervalValue;
+  options.tco = tcoChecked;
+  options.replies = repliesChecked;
 
   chrome.storage.sync.set(options, function() {
-    interval.value = value;
+    interval.value = intervalValue;
+    tco.checked = tcoChecked;
+    replies.checked = repliesChecked;
 
     var submit = document.getElementById("submit");
 
@@ -34,9 +46,13 @@ function saveOptions() {
 function getOptions() {
   var options = {};
   options.interval = _defaultInterval;
+  options.tco = _defaultTco;
+  options.replies = _defaultReplies;
 
   chrome.storage.sync.get(options, function(options) {
     document.getElementById("interval").value = options.interval;
+    document.getElementById("tco").checked = options.tco;
+    document.getElementById("replies").checked = options.replies;
   });
 }
 
