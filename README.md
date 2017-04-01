@@ -3,7 +3,7 @@
 Fix Twitter is a Chrome browser extension that fixes dumb things about Twitter and TweetDeck on the web.
 
 - Always show “replying to” in replies and threads.
-- Enable old school at-mention replies.
+- Enable old school @-mention replies.
 - Replace `https://t.co` links with the original URLs ([wherever possible](#details)).
 
 ## Install
