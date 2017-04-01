@@ -8,7 +8,7 @@ Fix Twitter is a Chrome browser extension that fixes dumb things about Twitter a
 
 ## Install
 
-Fix Twitter is available to install on the Chrome Web Store: [chrome.google.com/webstore/detail/tco-remove/gnmfhemkaclbeooiklobpejpoihpfnfd](https://chrome.google.com/webstore/detail/tco-remove/gnmfhemkaclbeooiklobpejpoihpfnfd).
+Fix Twitter is available to install on the Chrome Web Store: [chrome.google.com/webstore/detail/fix-twitter/gnmfhemkaclbeooiklobpejpoihpfnfd](https://chrome.google.com/webstore/detail/fix-twitter/gnmfhemkaclbeooiklobpejpoihpfnfd).
 
 However, if you’d like to manually install this extension:
 
