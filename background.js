@@ -99,7 +99,10 @@ var FT = (function() {
         }
         else {
           // Get list of people replying to, remove (“Replying to”) and trim whitespace
-          var peopleHtml = reply.innerHTML.trim().replace(/\s+/g, " ").replace(/Replying to/g, "") + " ";
+          var peopleHtml = reply.innerHTML.replace(/\s+/g, " ").replace(/Replying to/g, "");
+          peopleHtml = peopleHtml.trim() + " ";
+
+          console.log(peopleHtml);
 
           // Find .tweet-text (if Twitter.com) or .tweet-text
           var tweetClass = ".tweet-text";
