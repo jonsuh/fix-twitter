@@ -52,7 +52,7 @@ function saveOptions() {
       setTimeout(function() {
         submit.innerHTML = submit.getAttribute("placeholder");
         submit.removeAttribute("disabled");
-      }, 1000);
+      }, 3000);
     }
   });
 }

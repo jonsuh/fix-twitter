@@ -7,20 +7,20 @@
     body { font-size: 0.85rem; }
     .form-field + .form-field { margin-top: 0.5em; }
     .form-input { width: 4rem; }
-    [disabled],
-    [disabled] + label { opacity: 0.3; }
+    input[disabled],
+    input[disabled] + label { opacity: 0.3; }
   </style>
 </head>
 <body>
   <form id="form">
     <div class="form-field">
-      <input id="tco" type="checkbox"> <label for="tco">Replace t.co links with original URLs</label>
+      <input id="tco" type="checkbox"> <label for="tco">Replace t.co links with original links</label>
     </div>
     <div class="form-field">
       <input id="replies" type="checkbox"> <label for="replies">Always show “replying to” in replies</label>
     </div>
-    <div class="form-field">
-      <input id="old_school" type="checkbox"> <label for="old_school">Old school “replying to” view</label>
+    <div class="form-field" style="padding-left: 1em">
+      <input id="old_school" type="checkbox"> <label for="old_school">Old school @-mention replies</label>
     </div>
     <div class="form-field">
       <label for="interval">Polling interval (in milliseconds):</label> <input id="interval" type="number" min="1" placeholder="3000" class="form-input" required>
