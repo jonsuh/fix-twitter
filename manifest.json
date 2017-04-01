@@ -1,9 +1,9 @@
 {
   "name": "Fix Twitter",
-  "version": "1.1",
+  "version": "1.1.1",
   "manifest_version": 2,
   "author": "Jonathan Suh <hello@jonsuh.com>",
-  "description": "Fix dumb things about Twitter and TweetDeck on the web",
+  "description": "Fix dumb things about Twitter and TweetDeck on the web (e.g. hidden “replying to”, t.co links)",
   "homepage_url": "https://github.com/jonsuh/fix-twitter/",
   "icons": {
     "16": "icon16.png",
