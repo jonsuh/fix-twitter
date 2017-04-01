@@ -2,8 +2,9 @@
   * Fix Twitter
   *
   * Chrome extension to fix dumb things about the Twitter and TweetDeck on the web.
-  * - Restore list of people for replies
-  * - Change http://t.co links to original URLs where possible
+  * - Always show “replying to” in replies and threads
+  * - Enable old school “replying to” view
+  * - Replace https://t.co links with original URLs (wherever possible)
   *
   * https://github.com/jonsuh/fix-twitter/
   * Copyright (c) 2017 Jonathan Suh <hello@jonsuh.com>
