@@ -3,7 +3,7 @@
 Fix Twitter is a Chrome browser extension that fixes dumb things about Twitter and TweetDeck on the web.
 
 - Always show “replying to” in replies and threads.
-- Enable old school “replying to” view
+- Enable old school at-mention replies.
 - Replace `https://t.co` links with the original URLs ([wherever possible](#details)).
 
 ## Install
@@ -26,7 +26,7 @@ git clone git@github.com:jonsuh/fix-twitter.git
 
 - Should replace most but not *all* `https://t.co` links—it only replaces ones where the data of the original URL is available in the markup (e.g. `<a href="https://t.co/blahblah" data-extended-url="http://original-url.com">`)
 - Runs in the background and only executes in tabs open to [twitter.com](https://twitter.com) or [tweetdeck.twitter.com](https://tweetdeck.twitter.com).
-- Runs every 3 seconds (polling interval customizable in extension options). Only shows hidden “replying to” that haven’t already been restored and only replaces new `t.co` links that haven’t already been changed (i.e. when you first load [twitter.com](https://twitter.com), navigate to a new page, open a modal, load more tweets, etc.)
+- Runs every 3 seconds (polling interval customizable in options). Only shows hidden “replying to” that haven’t already been restored, and only replaces new `t.co` links that haven’t already been changed (i.e. when you first load [twitter.com](https://twitter.com), navigate to a new page, open a modal, load more tweets, etc.)
 - Permission is listed as being able to “*Read and change your data on tweetdeck.twitter.com and twitter.com*” but none of your data is being read, stored, sent or otherwise by me or anyone else. If you’re curious or skeptical, see the `background.js` to see what’s happening under the hood.
 
 ## Pssst!

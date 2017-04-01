@@ -2,9 +2,9 @@
   * Fix Twitter
   *
   * Chrome extension to fix dumb things about the Twitter and TweetDeck on the web.
-  * - Always show “replying to” in replies and threads
-  * - Enable old school “replying to” view
-  * - Replace https://t.co links with original URLs (wherever possible)
+  * - Always show “replying to” in replies and threads.
+  * - Enable old school at-mention replies.
+  * - Replace https://t.co links with original URLs (wherever possible).
   *
   * https://github.com/jonsuh/fix-twitter/
   * Copyright (c) 2017 Jonathan Suh <hello@jonsuh.com>
@@ -40,8 +40,7 @@ var FT = (function() {
 
   /**
    * Initializes the app
-   * Gets the polling interval in milliseconds (default: 3000)
-   * Then run start()
+   * Gets options values. Then runs start().
    *
    * @public
    */
@@ -60,7 +59,7 @@ var FT = (function() {
   /**
    * Starts and polls based on interval
    *
-   @param {Interval} interval - polling interval in milliseconds
+   @param {Object} data - options object from chrome.storage.sync.get()
    *
    * @private
    */
