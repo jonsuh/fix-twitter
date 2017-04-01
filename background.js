@@ -102,8 +102,6 @@ var FT = (function() {
           var peopleHtml = reply.innerHTML.replace(/\s+/g, " ").replace(/Replying to/g, "");
           peopleHtml = peopleHtml.trim() + " ";
 
-          console.log(peopleHtml);
-
           // Find .tweet-text (if Twitter.com) or .tweet-text
           var tweetClass = ".tweet-text";
           var replyParentNode;
