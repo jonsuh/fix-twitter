@@ -47,9 +47,10 @@ var FT = (function() {
   var init = function() {
     // Get polling interval. Set default of 3000 if not set
     chrome.storage.sync.get({
-      interval: 3000,
-      tco     : true,
-      replies : true
+      interval : 3000,
+      tco      : true,
+      replies  : true,
+      oldSchool: false,
     }, function(data) {
       start(data);
     });
@@ -70,7 +71,7 @@ var FT = (function() {
         }
 
         if (data.replies === true) {
-          repliesShow();
+          replyingToShow(data.oldSchool);
         }
       }
 
@@ -84,42 +85,48 @@ var FT = (function() {
     }
   };
   /**
-    * Searches for tweets with “hidden” list of people replying to and appends them to the tweet
+    * Search for tweets with hidden “replying to” and makes them visible again
    */
 
-  var repliesShow = function() {
-    var replies = document.querySelectorAll(".ReplyingToContextBelowAuthor, .other-replies");
+  var replyingToShow = function(oldSchool) {
+    var replies = document.querySelectorAll(".ReplyingToContextBelowAuthor:not([data-replying-to-visible]), .other-replies:not([data-replying-to-visible])");
 
     if (replies.length > 0) {
       forEach(replies, function(reply) {
-        // Get list of people replying to, remove (“Replying to”) and trim whitespace
-        var peopleHtml = reply.innerHTML.trim().replace(/\s+/g, " ").replace(/Replying to/g, "") + " ";
-
-        // Find .tweet-text (if Twitter.com) or .tweet-text
-        var tweetClass = ".tweet-text";
-        var replyParentNode;
-
-        // If Twitter
-        if (reply.classList.contains("ReplyingToContextBelowAuthor")) {
-          replyParentNode = reply.parentNode;
+        if (oldSchool === false) {
+          reply.style.display = "block";
+          reply.setAttribute("data-replying-to-visible", "");
         }
-        // If TweetDeck
-        else if (reply.classList.contains("other-replies")) {
-          replyParentNode = reply.parentNode.parentNode;
+        else {
+          // Get list of people replying to, remove (“Replying to”) and trim whitespace
+          var peopleHtml = reply.innerHTML.trim().replace(/\s+/g, " ").replace(/Replying to/g, "") + " ";
 
-          // For quoted tweets
-          if (replyParentNode.classList.contains("js-reply-info-container")) {
-            replyParentNode = replyParentNode.parentNode;
+          // Find .tweet-text (if Twitter.com) or .tweet-text
+          var tweetClass = ".tweet-text";
+          var replyParentNode;
 
-            tweetClass = ".js-quoted-tweet-text";
+          // If Twitter
+          if (reply.classList.contains("ReplyingToContextBelowAuthor")) {
+            replyParentNode = reply.parentNode;
           }
+          // If TweetDeck
+          else if (reply.classList.contains("other-replies")) {
+            replyParentNode = reply.parentNode.parentNode;
+
+            // For quoted tweets
+            if (replyParentNode.classList.contains("js-reply-info-container")) {
+              replyParentNode = replyParentNode.parentNode;
+
+              tweetClass = ".js-quoted-tweet-text";
+            }
+          }
+
+          // Append peopleHtml to tweet
+          replyParentNode.querySelector(tweetClass).insertAdjacentHTML("afterbegin", peopleHtml);
+
+          // Remove reply node from DOM
+          reply.remove();
         }
-
-        // Append peopleHtml to tweet
-        replyParentNode.querySelector(tweetClass).insertAdjacentHTML("afterbegin", peopleHtml);
-
-        // Remove reply node from DOM
-        reply.remove();
       });
     }
   };

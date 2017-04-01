@@ -1,9 +1,17 @@
-var _defaultInterval = 3000;
-var _defaultTco = true;
-var _defaultReplies = true;
+var _defaultInterval  = 3000;
+var _defaultTco       = true;
+var _defaultReplies   = true;
+var _defaultOldSchool = false;
+
+var elInterval  = document.getElementById("interval");
+var elTco       = document.getElementById("tco");
+var elReplies   = document.getElementById("replies");
+var elOldSchool = document.getElementById("old_school");
+
+var elSubmit = document.getElementById("submit");
 
 function saveOptions() {
-  var interval = document.getElementById("interval");
+  var interval = elInterval;
   var intervalValue = parseInt(interval.value, 10);
   var valid = true;
 
@@ -12,23 +20,29 @@ function saveOptions() {
     valid = false;
   }
 
-  var tco = document.getElementById("tco");
+  var tco = elTco;
   var tcoChecked = tco.checked;
 
-  var replies = document.getElementById("replies");
+  var replies = elReplies;
   var repliesChecked = replies.checked;
 
-  var options = {};
-  options.interval = intervalValue;
-  options.tco = tcoChecked;
-  options.replies = repliesChecked;
+  var oldSchool = elOldSchool;
+  var oldSchoolChecked = oldSchool.checked;
+
+  var options = {
+    interval : intervalValue,
+    tco      : tcoChecked,
+    replies  : repliesChecked,
+    oldSchool: oldSchoolChecked
+  };
 
   chrome.storage.sync.set(options, function() {
-    interval.value = intervalValue;
-    tco.checked = tcoChecked;
-    replies.checked = repliesChecked;
+    interval.value    = intervalValue;
+    tco.checked       = tcoChecked;
+    replies.checked   = repliesChecked;
+    oldSchool.checked = oldSchoolChecked;
 
-    var submit = document.getElementById("submit");
+    var submit = elSubmit;
 
     if (valid) {
       submit.setAttribute("placeholder", submit.innerHTML);
@@ -44,20 +58,37 @@ function saveOptions() {
 }
 
 function getOptions() {
-  var options = {};
-  options.interval = _defaultInterval;
-  options.tco = _defaultTco;
-  options.replies = _defaultReplies;
+  var options = {
+    interval : _defaultInterval,
+    tco      : _defaultTco,
+    replies  : _defaultReplies,
+    oldSchool: _defaultOldSchool
+  };
 
   chrome.storage.sync.get(options, function(options) {
-    document.getElementById("interval").value = options.interval;
-    document.getElementById("tco").checked = options.tco;
-    document.getElementById("replies").checked = options.replies;
+    elInterval.value    = options.interval;
+    elTco.checked       = options.tco;
+    elReplies.checked   = options.replies;
+    elOldSchool.checked = options.oldSchool;
+
+    if (options.replies === false) {
+      elOldSchool.setAttribute("disabled", "disabled");
+    }
+
+    elReplies.addEventListener("change", function(event) {
+      if (this.checked === true) {
+        elOldSchool.removeAttribute("disabled");
+      }
+      else {
+        elOldSchool.setAttribute("disabled", "disabled");
+      }
+    });
   });
 }
 
 document.addEventListener("DOMContentLoaded", getOptions);
-document.getElementById("submit").addEventListener("click", saveOptions);
+elSubmit.addEventListener("click", saveOptions);
 document.getElementById("form").addEventListener("submit", function(event) {
   event.preventDefault();
 });
+
