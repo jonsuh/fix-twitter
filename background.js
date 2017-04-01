@@ -1,14 +1,16 @@
 /**
-  * t.co Remove
+  * Fix Twitter
   *
-  * Chrome extension to remove t.co links on Twitter and Tweetdeck and replace them with their original URLs.
-  * Why remove t.co links? Because t.co links are slow, crappy, redundant and unnecessary.
+  * Chrome extension to fix dumb things about the Twitter and TweetDeck on the web.
+  * - Always show “replying to” in replies and threads
+  * - Enable old school “replying to” view
+  * - Replace https://t.co links with original URLs (wherever possible)
   *
-  * https://github.com/jonsuh/tco-remove/
-  * Copyright (c) 2016 Jonathan Suh <hello@jonsuh.com>
+  * https://github.com/jonsuh/fix-twitter/
+  * Copyright (c) 2017 Jonathan Suh <hello@jonsuh.com>
   */
 
-var tcoRemove = (function() {
+var FT = (function() {
   "use strict";
 
   /**
@@ -46,9 +48,12 @@ var tcoRemove = (function() {
   var init = function() {
     // Get polling interval. Set default of 3000 if not set
     chrome.storage.sync.get({
-      interval: 3000
+      interval : 3000,
+      tco      : true,
+      replies  : true,
+      oldSchool: false,
     }, function(data) {
-      start(data.interval);
+      start(data);
     });
   };
 
@@ -59,14 +64,72 @@ var tcoRemove = (function() {
    *
    * @private
    */
-  var start = function(interval) {
-    // First run
-    change();
+  var start = function(data) {
+    if (data.tco === true || data.replies === true) {
+      function justDoIt() {
+        if (data.tco === true) {
+          tcoRemove();
+        }
 
-    // Continously poll
-    setInterval(function() {
-      change();
-    }, interval);
+        if (data.replies === true) {
+          replyingToShow(data.oldSchool);
+        }
+      }
+
+      // First run
+      justDoIt();
+
+      // Continously poll
+      setInterval(function() {
+        justDoIt();
+      }, data.interval);
+    }
+  };
+  /**
+    * Search for tweets with hidden “replying to” and makes them visible again
+   */
+
+  var replyingToShow = function(oldSchool) {
+    var replies = document.querySelectorAll(".ReplyingToContextBelowAuthor:not([data-replying-to-visible]), .other-replies:not([data-replying-to-visible])");
+
+    if (replies.length > 0) {
+      forEach(replies, function(reply) {
+        if (oldSchool === false) {
+          reply.style.display = "block";
+          reply.setAttribute("data-replying-to-visible", "");
+        }
+        else {
+          // Get list of people replying to, remove (“Replying to”) and trim whitespace
+          var peopleHtml = reply.innerHTML.trim().replace(/\s+/g, " ").replace(/Replying to/g, "") + " ";
+
+          // Find .tweet-text (if Twitter.com) or .tweet-text
+          var tweetClass = ".tweet-text";
+          var replyParentNode;
+
+          // If Twitter
+          if (reply.classList.contains("ReplyingToContextBelowAuthor")) {
+            replyParentNode = reply.parentNode;
+          }
+          // If TweetDeck
+          else if (reply.classList.contains("other-replies")) {
+            replyParentNode = reply.parentNode.parentNode;
+
+            // For quoted tweets
+            if (replyParentNode.classList.contains("js-reply-info-container")) {
+              replyParentNode = replyParentNode.parentNode;
+
+              tweetClass = ".js-quoted-tweet-text";
+            }
+          }
+
+          // Append peopleHtml to tweet
+          replyParentNode.querySelector(tweetClass).insertAdjacentHTML("afterbegin", peopleHtml);
+
+          // Remove reply node from DOM
+          reply.remove();
+        }
+      });
+    }
   };
 
   /**
@@ -74,16 +137,15 @@ var tcoRemove = (function() {
    *
    * @private
    */
-  var change = function() {
-    console.log("CHANGE");
+  var tcoRemove = function() {
     // Search the page for unmodified Twitter timeline and Tweetdeck links
-    var tcoLinks = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
+    var links = document.querySelectorAll(".twitter-timeline-link:not([data-tco-removed]), a[data-full-url]:not([data-tco-removed])");
 
     // Make sure that there are one or more links found
-    if (tcoLinks.length > 0) {
+    if (links.length > 0) {
       var linkChanged;
 
-      forEach(tcoLinks, function(link) {
+      forEach(links, function(link) {
         linkChanged = false;
         // If the link has attribute `data-expanded-url`,
         // replace the t.co link with the value of `data-expanded-url`
@@ -111,7 +173,7 @@ var tcoRemove = (function() {
 
         // Mark the link as being changed (so it doesn’t get picked up when the script runs again)
         if (linkChanged === true) {
-          markChanged(link);
+          tcoMarkChanged(link);
         }
       });
     }
@@ -123,7 +185,7 @@ var tcoRemove = (function() {
    * @private
    * @el {Element} The link element
    */
-  var markChanged = function(el) {
+  var tcoMarkChanged = function(el) {
     el.setAttribute("data-tco-removed", "");
   };
 
@@ -135,4 +197,4 @@ var tcoRemove = (function() {
   };
 })();
 
-tcoRemove.init();
+FT.init();

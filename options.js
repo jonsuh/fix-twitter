@@ -1,22 +1,48 @@
-var _defaultInterval = 3000;
+var _defaultInterval  = 3000;
+var _defaultTco       = true;
+var _defaultReplies   = true;
+var _defaultOldSchool = false;
+
+var elInterval  = document.getElementById("interval");
+var elTco       = document.getElementById("tco");
+var elReplies   = document.getElementById("replies");
+var elOldSchool = document.getElementById("old_school");
+
+var elSubmit = document.getElementById("submit");
 
 function saveOptions() {
-  var interval = document.getElementById("interval");
-  var value = parseInt(interval.value, 10);
+  var interval = elInterval;
+  var intervalValue = parseInt(interval.value, 10);
   var valid = true;
 
-  if (isNaN(value) || value <= 0) {
-    value = _defaultInterval;
+  if (isNaN(intervalValue) || intervalValue <= 0) {
+    intervalValue = _defaultInterval;
     valid = false;
   }
 
-  var options = {};
-  options.interval = value;
+  var tco = elTco;
+  var tcoChecked = tco.checked;
+
+  var replies = elReplies;
+  var repliesChecked = replies.checked;
+
+  var oldSchool = elOldSchool;
+  var oldSchoolChecked = oldSchool.checked;
+
+  var options = {
+    interval : intervalValue,
+    tco      : tcoChecked,
+    replies  : repliesChecked,
+    oldSchool: oldSchoolChecked
+  };
 
   chrome.storage.sync.set(options, function() {
-    interval.value = value;
+    interval.value    = intervalValue;
+    tco.checked       = tcoChecked;
+    replies.checked   = repliesChecked;
+    oldSchool.checked = oldSchoolChecked;
 
-    var submit = document.getElementById("submit");
+    var submit = elSubmit;
 
     if (valid) {
       submit.setAttribute("placeholder", submit.innerHTML);
@@ -32,16 +58,37 @@ function saveOptions() {
 }
 
 function getOptions() {
-  var options = {};
-  options.interval = _defaultInterval;
+  var options = {
+    interval : _defaultInterval,
+    tco      : _defaultTco,
+    replies  : _defaultReplies,
+    oldSchool: _defaultOldSchool
+  };
 
   chrome.storage.sync.get(options, function(options) {
-    document.getElementById("interval").value = options.interval;
+    elInterval.value    = options.interval;
+    elTco.checked       = options.tco;
+    elReplies.checked   = options.replies;
+    elOldSchool.checked = options.oldSchool;
+
+    if (options.replies === false) {
+      elOldSchool.setAttribute("disabled", "disabled");
+    }
+
+    elReplies.addEventListener("change", function(event) {
+      if (this.checked === true) {
+        elOldSchool.removeAttribute("disabled");
+      }
+      else {
+        elOldSchool.setAttribute("disabled", "disabled");
+      }
+    });
   });
 }
 
 document.addEventListener("DOMContentLoaded", getOptions);
-document.getElementById("submit").addEventListener("click", saveOptions);
+elSubmit.addEventListener("click", saveOptions);
 document.getElementById("form").addEventListener("submit", function(event) {
   event.preventDefault();
 });
+
