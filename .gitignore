@@ -7,3 +7,4 @@ assets/css
 *.key
 dist/chrome
 dist/firefox
+dist/opera
