@@ -1,7 +1,7 @@
 /**
   * Fix Twitter
   *
-  * Chrome extension to fix dumb things about the Twitter and TweetDeck on the web.
+  * Browser extension to fix dumb things about the Twitter and TweetDeck on the web.
   * - Always show “replying to” in replies and threads.
   * - Enable old school @-mention replies.
   * - Replace https://t.co links with original URLs (wherever possible).
