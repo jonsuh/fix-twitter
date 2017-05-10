@@ -1,6 +1,6 @@
 # Introduction
 
-Fix Twitter is a Chrome browser extension that fixes dumb things about Twitter and TweetDeck on the web.
+Fix Twitter is a browser extension that fixes dumb things about Twitter and TweetDeck on the web.
 
 - Always show “replying to” in replies and threads.
 - Enable old school @-mention replies.
@@ -8,9 +8,11 @@ Fix Twitter is a Chrome browser extension that fixes dumb things about Twitter a
 
 ## Install
 
-Fix Twitter is available to install on the Chrome Web Store: [chrome.google.com/webstore/detail/fix-twitter/gnmfhemkaclbeooiklobpejpoihpfnfd](https://chrome.google.com/webstore/detail/fix-twitter/gnmfhemkaclbeooiklobpejpoihpfnfd).
+Fix Twitter is available to install for:
+- [Google Chrome](https://chrome.google.com/webstore/detail/fix-twitter/gnmfhemkaclbeooiklobpejpoihpfnfd)
+- [Opera](https://addons.opera.com/en/extensions/details/fix-twitter/)
 
-However, if you’d like to manually install this extension:
+To manually install this extension for Chrome:
 
 1. Either (A) download and unzip the files or (B) clone this repository where you want to store this extension:
 
