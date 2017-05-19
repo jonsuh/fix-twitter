@@ -10,6 +10,7 @@ Fix Twitter is a browser extension that fixes dumb things about Twitter and Twee
 
 Fix Twitter is available to install for:
 - [Google Chrome](https://chrome.google.com/webstore/detail/fix-twitter/gnmfhemkaclbeooiklobpejpoihpfnfd)
+- [Firefox](https://addons.mozilla.org/en-US/firefox/addon/fix-twitter/)
 - [Opera](https://addons.opera.com/en/extensions/details/fix-twitter/)
 
 To manually install this extension for Chrome:
