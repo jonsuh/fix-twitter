@@ -2,6 +2,10 @@
 
 Changelog for Fix Twitter.
 
+## [1.2](https://github.com/jonsuh/fix-twitter/releases/tag/v1.2) - 3/12/2018
+### Added
+- Hide “in case you missed” notifications
+
 ## [1.1.3](https://github.com/jonsuh/fix-twitter/releases/tag/v1.1.3) - 4/1/2017
 ### Fixed
 - Remove unnecessary whitespace in old-school @-mentions [0d3a80d](https://github.com/jonsuh/fix-twitter/commit/0d3a80d3945f7fc0e463281653f64a15764f3ed4)
