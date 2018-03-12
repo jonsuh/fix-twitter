@@ -31,7 +31,8 @@
     }
   ],
   "permissions": [
-    "storage"
+    "storage",
+    "https://twitter.com/*"
   ],
   "options_ui": {
     "page": "options.html",
