@@ -51,8 +51,16 @@ var FT = (function() {
       tco      : true,
       replies  : true,
       oldSchool: false,
+      icym     : false
     }, function(data) {
       start(data);
+
+      chrome.runtime.sendMessage(
+        {
+          greeting: "hello",
+          icym: data.icym
+        }
+      );
     });
   };
 
