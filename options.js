@@ -2,11 +2,13 @@ var _defaultInterval  = 3000;
 var _defaultTco       = true;
 var _defaultReplies   = true;
 var _defaultOldSchool = false;
+var _defaultIcym      = false;
 
 var elInterval  = document.getElementById("interval");
 var elTco       = document.getElementById("tco");
 var elReplies   = document.getElementById("replies");
 var elOldSchool = document.getElementById("old_school");
+var elIcym      = document.getElementById("icym");
 
 var elSubmit = document.getElementById("submit");
 
@@ -29,11 +31,15 @@ function saveOptions() {
   var oldSchool = elOldSchool;
   var oldSchoolChecked = oldSchool.checked;
 
+  var icym = elIcym;
+  var icymChecked = icym.checked;
+
   var options = {
     interval : intervalValue,
     tco      : tcoChecked,
     replies  : repliesChecked,
-    oldSchool: oldSchoolChecked
+    oldSchool: oldSchoolChecked,
+    icym     : icymChecked
   };
 
   chrome.storage.sync.set(options, function() {
@@ -41,6 +47,7 @@ function saveOptions() {
     tco.checked       = tcoChecked;
     replies.checked   = repliesChecked;
     oldSchool.checked = oldSchoolChecked;
+    icym.checked      = icymChecked;
 
     var submit = elSubmit;
 
@@ -62,7 +69,8 @@ function getOptions() {
     interval : _defaultInterval,
     tco      : _defaultTco,
     replies  : _defaultReplies,
-    oldSchool: _defaultOldSchool
+    oldSchool: _defaultOldSchool,
+    icym     : _defaultIcym
   };
 
   chrome.storage.sync.get(options, function(options) {
@@ -70,6 +78,7 @@ function getOptions() {
     elTco.checked       = options.tco;
     elReplies.checked   = options.replies;
     elOldSchool.checked = options.oldSchool;
+    elIcym.checked      = options.icym;
 
     if (options.replies === false) {
       elOldSchool.setAttribute("disabled", "disabled");
@@ -91,4 +100,3 @@ elSubmit.addEventListener("click", saveOptions);
 document.getElementById("form").addEventListener("submit", function(event) {
   event.preventDefault();
 });
-
