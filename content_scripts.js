@@ -7,7 +7,7 @@
   * - Replace https://t.co links with original URLs (wherever possible).
   *
   * https://github.com/jonsuh/fix-twitter/
-  * Copyright (c) 2017 Jonathan Suh <hello@jonsuh.com>
+  * Copyright (c) 2017-2018 Jonathan Suh <hello@jonsuh.com>
   */
 
 var FT = (function() {
