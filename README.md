@@ -35,10 +35,14 @@ git clone git@github.com:jonsuh/fix-twitter.git
 
 ## Pssst!
 
-If you use Tweetbot 2 for Mac, you can also replace `t.co` links by running the following in Terminal:
+If you use Tweetbot for Mac, you can also replace `t.co` links by running the following in Terminal:
 
-```
+```bash
+# Tweetbot 2
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly YES
+
+# Tweetbot 3
+defaults write com.tapbots.Tweetbot3Mac OpenURLsDirectly YES
 ```
 
 Enjoy!
